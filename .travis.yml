@@ -25,9 +25,9 @@ cache:
 script: "./gradlew clean build"
 
 before_deploy:
-  - zip -r springboot-web-practise *
+  - zip -r inha-spring-study *
   - mkdir -p deploy
-  - mv springboot-web-practise.zip deploy/springboot-web-practise.zip
+  - mv inha-spring-study.zip deploy/inha-spring-study.zip
 
 deploy:
   - provider: s3
