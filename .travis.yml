@@ -24,6 +24,22 @@ cache:
 # 프로젝트 내에 권한이 추가된 gradlew를 활용하여 clean, build를 진행한다.
 script: "./gradlew clean build"
 
+before_deploy:
+  - zip -r springboot-web-practise *
+  - mkdir -p deploy
+  - mv springboot-web-practise.zip deploy/springboot-web-practise.zip
+
+deploy:
+  - provider: s3
+    access_key_id: 921235022605
+    secret_access_key: $nU4I!54
+    bucket: spring-study-build
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait-until-deployed: true
+
 # CI 실행 완료 시 작성한 이메일로 알람
 notifications:
   email:
